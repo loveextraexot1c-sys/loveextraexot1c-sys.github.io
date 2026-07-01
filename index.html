@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate AI — ИИ‑ассистент в Telegram</title>
-    <meta name="description" content="ИИ-помощник для текстов, идей и общения. Три стиля ответа, история диалога, без подписки. Первые 10 запросов бесплатно. Попробуйте прямо сейчас!">
-    <meta name="keywords" content="ИИ помощник, нейросеть, телеграм бот, копирайтинг, тексты, SMM, чат-бот, искусственный интеллект, генерация текста">
+    <meta name="description" content="ИИ-помощник для текстов, идей и общения. Выбор нейросети, стили ответа, реферальная система. 20 запросов бесплатно. @ultimateai2v_bot">
+    <meta name="keywords" content="ИИ помощник, нейросеть, телеграм бот, ChatGPT, DeepSeek, копирайтинг, тексты, SMM, чат-бот, искусственный интеллект, генерация текста">
     <meta name="yandex-verification" content="08258e5ddb2044b1" />
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #0b1a2a 0%, #0d2137 50%, #0a1922 100%);
@@ -23,21 +18,35 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 10;
+            display: flex;
+            gap: 10px;
         }
-
-        /* Hero Section */
+        .lang-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0,229,255,0.3);
+            color: #00e5ff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .lang-btn.active {
+            background: #00e5ff;
+            color: #0a1922;
+        }
         .hero {
-            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.08) 0%, transparent 60%);
+            background: radial-gradient(circle at 20% 50%, rgba(0,255,255,0.08) 0%, transparent 60%);
             padding: 80px 0 60px;
             text-align: center;
             position: relative;
         }
-
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 800;
@@ -48,14 +57,12 @@
             margin-bottom: 20px;
             line-height: 1.2;
         }
-
         .hero p {
             font-size: 1.4rem;
             color: #b0c7d8;
             max-width: 700px;
             margin: 0 auto 30px;
         }
-
         .hero .cta {
             display: inline-block;
             background: linear-gradient(135deg, #00e5ff, #00bcd4);
@@ -65,48 +72,25 @@
             padding: 18px 45px;
             border-radius: 60px;
             text-decoration: none;
-            box-shadow: 0 8px 30px rgba(0, 229, 255, 0.3);
-            transition: all 0.3s;
+            box-shadow: 0 8px 30px rgba(0,229,255,0.3);
+            transition: 0.3s;
             border: none;
             cursor: pointer;
         }
-
-        .hero .cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 229, 255, 0.5);
-        }
-
+        .hero .cta:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(0,229,255,0.5); }
         .free-badge {
             display: inline-block;
-            background: rgba(0, 229, 255, 0.1);
-            border: 1px solid rgba(0, 229, 255, 0.3);
+            background: rgba(0,229,255,0.1);
+            border: 1px solid rgba(0,229,255,0.3);
             color: #00e5ff;
             padding: 10px 25px;
             border-radius: 30px;
             font-size: 1rem;
             margin-top: 20px;
         }
-
-        /* Why Section */
-        .why {
-            padding: 80px 0;
-            text-align: center;
-            background: rgba(255,255,255,0.02);
-        }
-
-        .why h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #00e5ff;
-            margin-bottom: 15px;
-        }
-
-        .why .subtitle {
-            font-size: 1.2rem;
-            color: #8899aa;
-            margin-bottom: 50px;
-        }
-
+        .why { padding: 80px 0; text-align: center; background: rgba(255,255,255,0.02); }
+        .why h2 { font-size: 2.5rem; font-weight: 700; color: #00e5ff; margin-bottom: 15px; }
+        .why .subtitle { font-size: 1.2rem; color: #8899aa; margin-bottom: 50px; }
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -114,52 +98,25 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-
         .feature-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255,255,255,0.03);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 35px 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
         }
-
         .feature-card:hover {
             transform: translateY(-5px);
-            background: rgba(0, 229, 255, 0.05);
-            border-color: rgba(0, 229, 255, 0.2);
-            box-shadow: 0 15px 30px rgba(0, 229, 255, 0.1);
+            background: rgba(0,229,255,0.05);
+            border-color: rgba(0,229,255,0.2);
+            box-shadow: 0 15px 30px rgba(0,229,255,0.1);
         }
-
-        .feature-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .feature-card p {
-            color: #a0b8cc;
-            font-size: 0.95rem;
-        }
-
-        /* Tariffs */
-        .tariffs {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .tariffs h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #00e5ff;
-            margin-bottom: 15px;
-        }
-
+        .feature-card .icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .feature-card h3 { font-size: 1.4rem; margin-bottom: 10px; color: #fff; }
+        .feature-card p { color: #a0b8cc; font-size: 0.95rem; }
+        .tariffs { padding: 80px 0; text-align: center; }
+        .tariffs h2 { font-size: 2.5rem; font-weight: 700; color: #00e5ff; margin-bottom: 15px; }
         .tariff-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -167,25 +124,22 @@
             max-width: 1000px;
             margin: 40px auto 0;
         }
-
         .tariff-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255,255,255,0.03);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
             position: relative;
         }
-
         .tariff-card.popular {
             border-color: #00e5ff;
-            background: rgba(0, 229, 255, 0.05);
+            background: rgba(0,229,255,0.05);
             transform: scale(1.02);
         }
-
         .tariff-card.popular::before {
-            content: "ПОПУЛЯРНЫЙ";
+            content: attr(data-popular);
             position: absolute;
             top: -15px;
             left: 50%;
@@ -198,32 +152,10 @@
             font-size: 0.8rem;
             letter-spacing: 1px;
         }
-
-        .tariff-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .tariff-card .requests {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: #00e5ff;
-            margin: 15px 0;
-        }
-
-        .tariff-card .price {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .tariff-card .slogan {
-            color: #8899aa;
-            margin-bottom: 25px;
-            min-height: 40px;
-        }
-
+        .tariff-card h3 { font-size: 1.8rem; margin-bottom: 10px; color: #fff; }
+        .tariff-card .requests { font-size: 3.5rem; font-weight: 800; color: #00e5ff; margin: 15px 0; }
+        .tariff-card .price { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; }
+        .tariff-card .slogan { color: #8899aa; margin-bottom: 25px; min-height: 40px; }
         .tariff-card .btn {
             display: inline-block;
             background: transparent;
@@ -233,25 +165,11 @@
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: 0.3s;
         }
-
-        .tariff-card .btn:hover {
-            background: #00e5ff;
-            color: #0a1922;
-        }
-
-        .tariff-card.popular .btn {
-            background: #00e5ff;
-            color: #0a1922;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 60px 0;
-            text-align: center;
-        }
-
+        .tariff-card .btn:hover { background: #00e5ff; color: #0a1922; }
+        .tariff-card.popular .btn { background: #00e5ff; color: #0a1922; }
+        .testimonials { padding: 60px 0; text-align: center; }
         .testimonial {
             max-width: 600px;
             margin: 0 auto;
@@ -260,19 +178,8 @@
             padding: 30px;
             border: 1px solid rgba(255,255,255,0.05);
         }
-
-        .testimonial p {
-            font-style: italic;
-            color: #ccddee;
-        }
-
-        .testimonial .author {
-            margin-top: 20px;
-            font-weight: 600;
-            color: #00e5ff;
-        }
-
-        /* Footer */
+        .testimonial p { font-style: italic; color: #ccddee; }
+        .testimonial .author { margin-top: 20px; font-weight: 600; color: #00e5ff; }
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -280,108 +187,226 @@
             color: #667788;
             font-size: 0.9rem;
         }
-
-        footer a {
-            color: #00e5ff;
-            text-decoration: none;
-        }
-
+        footer a { color: #00e5ff; text-decoration: none; }
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero p {
-                font-size: 1.1rem;
-            }
-            .tariff-card .requests {
-                font-size: 2.8rem;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .tariff-card .requests { font-size: 2.8rem; }
         }
+        [data-lang] { display: none; }
+        [data-lang].active { display: block; }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <div class="container">
-            <h1>Ultimate AI — ИИ‑ассистент</h1>
-            <p>Пишет тексты, отвечает на вопросы, генерирует идеи — в том стиле, который нужен именно тебе. Забудь про пустой лист, просто спроси.</p>
-            <a href="https://t.me/ultimateai2v_bot" class="cta" target="_blank">🚀 Попробовать бесплатно</a>
-            <div class="free-badge">🎁 Первые 10 запросов — бесплатно</div>
-        </div>
+    <!-- Переключатель языков -->
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="switchLang('ru')">RU</button>
+        <button class="lang-btn" onclick="switchLang('en')">EN</button>
     </div>
 
-    <section class="why">
-        <div class="container">
-            <h2>Почему тебе это нужно?</h2>
-            <p class="subtitle">Потому что твой главный ресурс — это время, а ИИ-помощник его кратно экономит.</p>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="icon">⏱️</div>
-                    <h3>Мгновенные ответы</h3>
-                    <p>Генерирует текст быстрее, чем ты набираешь сообщение. Никаких задержек и ожиданий.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🎨</div>
-                    <h3>Три стиля общения</h3>
-                    <p>Официальный, разговорный и для соцсетей. Выбирай тон под задачу — от делового до креативного.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🧠</div>
-                    <h3>Сохраняет контекст</h3>
-                    <p>Помнит историю диалога до 15 сообщений — отвечает осмысленно, а не просто шаблонными фразами.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">💸</div>
-                    <h3>Не подписка</h3>
-                    <p>Покупаешь пакет запросов один раз — используешь когда угодно. Запросы не сгорают, пока работает сервис.</p>
-                </div>
+    <!-- Русская версия -->
+    <div data-lang="ru" class="active">
+        <div class="hero">
+            <div class="container">
+                <h1>Ultimate AI — ИИ‑ассистент</h1>
+                <p>Пишет тексты, отвечает на вопросы, генерирует идеи — в том стиле, который нужен именно тебе. Найди нас в Telegram: <strong>@ultimateai2v_bot</strong></p>
+                <a href="https://t.me/ultimateai2v_bot" class="cta" target="_blank">🚀 Попробовать бесплатно</a>
+                <div class="free-badge">🎁 20 запросов бесплатно</div>
             </div>
         </div>
-    </section>
 
-    <section class="tariffs">
-        <div class="container">
-            <h2>Выбери свой пакет</h2>
-            <div class="tariff-grid">
-                <div class="tariff-card">
-                    <h3>Базовый</h3>
-                    <div class="requests">700</div>
-                    <div class="price">249 ₽</div>
-                    <div class="slogan">Уверенный старт с ИИ</div>
-                    <a href="https://t.me/ultimateai2v_bot" class="btn" target="_blank">Попробовать</a>
-                </div>
-                <div class="tariff-card popular">
-                    <h3>Плюс</h3>
-                    <div class="requests">1800</div>
-                    <div class="price">599 ₽</div>
-                    <div class="slogan">Твой рабочий инструмент</div>
-                    <a href="https://t.me/ultimateai2v_bot" class="btn" target="_blank">Выбрать</a>
-                </div>
-                <div class="tariff-card">
-                    <h3>Профи</h3>
-                    <div class="requests">3500</div>
-                    <div class="price">899 ₽</div>
-                    <div class="slogan">Весь день с ИИ</div>
-                    <a href="https://t.me/ultimateai2v_bot" class="btn" target="_blank">Взять</a>
+        <section class="why">
+            <div class="container">
+                <h2>Почему тебе это нужно?</h2>
+                <p class="subtitle">Твой главный ресурс — время, а ИИ‑помощник его кратно экономит.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">🤖</div>
+                        <h3>Выбор нейросети</h3>
+                        <p>Переключайся между <strong>DeepSeek</strong> и <strong>GPT‑5.4</strong> в один клик. Каждая модель отвечает в твоём стиле.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎨</div>
+                        <h3>Четыре стиля общения</h3>
+                        <p>Обычный, Официальный, Разговорный и Для соцсетей. Выбирай тон под задачу.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔗</div>
+                        <h3>Реферальная программа</h3>
+                        <p>Приглашай друзей по своей ссылке и получай +10 бесплатных запросов за каждого.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🧹</div>
+                        <h3>Сброс истории</h3>
+                        <p>Начни диалог с чистого листа в любой момент. Никаких следов.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h3>Баланс и статус</h3>
+                        <p>Всегда видишь, сколько запросов осталось — бесплатных и оплаченных.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">💸</div>
+                        <h3>Не подписка</h3>
+                        <p>Покупаешь пакет запросов один раз — используешь когда угодно. Без срока давности.</p>
+                    </div>
                 </div>
             </div>
-            <p style="color: #667788; margin-top: 30px;">Все пакеты бессрочные. Покупаешь один раз — пользуешься в своём темпе.</p>
-        </div>
-    </section>
+        </section>
 
-    <section class="testimonials">
-        <div class="container">
-            <div class="testimonial">
-                <p>«Раньше я убивал по полчаса на пост для соцсетей. Теперь просто пишу боту тему, и он выдаёт несколько вариантов. Пакета хватило на месяц активной работы!»</p>
-                <div class="author">— Артём, SMM-менеджер</div>
+        <section class="tariffs">
+            <div class="container">
+                <h2>Выбери свой пакет</h2>
+                <div class="tariff-grid">
+                    <div class="tariff-card">
+                        <h3>Базовый</h3>
+                        <div class="requests">700</div>
+                        <div class="price">249 ₽</div>
+                        <div class="slogan">Уверенный старт с ИИ</div>
+                        <a href="https://t.me/ultimateai2v_bot" class="btn" target="_blank">Попробовать</a>
+                    </div>
+                    <div class="tariff-card popular" data-popular="ПОПУЛЯРНЫЙ">
+                        <h3>Плюс</h3>
+                        <div class="requests">1800</div>
+                        <div class="price">599 ₽</div>
+                        <div class="slogan">Твой рабочий инструмент</div>
+                        <a href="https://t.me/ultimateai2v_bot" class="btn" target="_blank">Выбрать</a>
+                    </div>
+                    <div class="tariff-card">
+                        <h3>Профи</h3>
+                        <div class="requests">3500</div>
+                        <div class="price">899 ₽</div>
+                        <div class="slogan">Весь день с ИИ</div>
+                        <a href="https://t.me/ultimateai2v_bot" class="btn" target="_blank">Взять</a>
+                    </div>
+                </div>
+                <p style="color: #667788; margin-top: 30px;">Все пакеты бессрочные. Просто введи <strong>@ultimateai2v_bot</strong> в поиске Telegram и начни общение.</p>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <div class="testimonial">
+                    <p>«Раньше я убивал по полчаса на пост для соцсетей. Теперь просто пишу боту тему, и он выдаёт несколько вариантов. Пакета хватило на месяц активной работы!»</p>
+                    <div class="author">— Артём, SMM-менеджер</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>Есть вопросы? Напишите в поддержку: <a href="https://t.me/ultimate_bot_support" target="_blank">@ultimate_bot_support</a></p>
+                <p style="margin-top: 15px;">© 2026 Ultimate AI — ИИ‑ассистент</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- English version -->
+    <div data-lang="en">
+        <div class="hero">
+            <div class="container">
+                <h1>Ultimate AI — Your AI Assistant</h1>
+                <p>Writes texts, answers questions, generates ideas — in the style you need. Find us on Telegram: <strong>@ultimateai2v_bot</strong></p>
+                <a href="https://t.me/ultimateai2v_bot" class="cta" target="_blank">🚀 Try for free</a>
+                <div class="free-badge">🎁 20 free requests</div>
             </div>
         </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <p>Есть вопросы? Напишите в поддержку: <a href="https://t.me/ultimate_bot_support" target="_blank">@ultimate_bot_support</a></p>
-            <p style="margin-top: 15px;">© 2026 Ultimate AI — ИИ‑ассистент</p>
-        </div>
-    </footer>
+        <section class="why">
+            <div class="container">
+                <h2>Why do you need it?</h2>
+                <p class="subtitle">Your main resource is time, and an AI assistant saves it dramatically.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">🤖</div>
+                        <h3>Choose your AI model</h3>
+                        <p>Switch between <strong>DeepSeek</strong> and <strong>GPT‑5.4</strong> with one click. Each model answers in your chosen style.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎨</div>
+                        <h3>Four communication styles</h3>
+                        <p>Normal, Formal, Casual and Social Media. Pick the right tone for your task.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔗</div>
+                        <h3>Referral program</h3>
+                        <p>Invite friends with your personal link and get +10 free requests for each new user.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🧹</div>
+                        <h3>Clear history</h3>
+                        <p>Start a fresh conversation anytime. No traces left behind.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h3>Balance & status</h3>
+                        <p>Always see how many free and paid requests you have left.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">💸</div>
+                        <h3>No subscription</h3>
+                        <p>Buy a request package once — use it whenever you want. No expiration.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tariffs">
+            <div class="container">
+                <h2>Choose your package</h2>
+                <div class="tariff-grid">
+                    <div class="tariff-card">
+                        <h3>Basic</h3>
+                        <div class="requests">700</div>
+                        <div class="price">249 ₽</div>
+                        <div class="slogan">Confident start with AI</div>
+                        <a href="https://t.me/ultimateai2v_bot" class="btn" target="_blank">Try</a>
+                    </div>
+                    <div class="tariff-card popular" data-popular="POPULAR">
+                        <h3>Plus</h3>
+                        <div class="requests">1800</div>
+                        <div class="price">599 ₽</div>
+                        <div class="slogan">Your everyday tool</div>
+                        <a href="https://t.me/ultimateai2v_bot" class="btn" target="_blank">Choose</a>
+                    </div>
+                    <div class="tariff-card">
+                        <h3>Pro</h3>
+                        <div class="requests">3500</div>
+                        <div class="price">899 ₽</div>
+                        <div class="slogan">AI all day long</div>
+                        <a href="https://t.me/ultimateai2v_bot" class="btn" target="_blank">Get</a>
+                    </div>
+                </div>
+                <p style="color: #667788; margin-top: 30px;">All packages are perpetual. Just type <strong>@ultimateai2v_bot</strong> in Telegram search and start chatting.</p>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <div class="testimonial">
+                    <p>«I used to spend half an hour on a social media post. Now I just tell the bot the topic and it gives me several options. The package lasted a month of active work!»</p>
+                    <div class="author">— Alex, SMM manager</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>Questions? Contact support: <a href="https://t.me/ultimate_bot_support" target="_blank">@ultimate_bot_support</a></p>
+                <p style="margin-top: 15px;">© 2026 Ultimate AI — AI Assistant</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => el.classList.remove('active'));
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.textContent.trim().toLowerCase() === lang) btn.classList.add('active');
+            });
+        }
+    </script>
 </body>
 </html>
